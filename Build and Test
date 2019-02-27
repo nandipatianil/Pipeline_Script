@@ -6,24 +6,31 @@ pipeline{
   }
   stages{
           stage('checkout git'){
-             steps{
+            steps{
                  git url:'---------------'
-                 sh 'git clean';             }
-                  }              
-        }
+                 sh 'git clean'; 
+                                }
+                  }             
           stage('build'){
             steps{
                   sh'mvn clean package'
-                 }
                         }
-          stage('test'){
-            steps{  
-                  parallel 'test': {
-                  sh "${mvnHome}/bin/mvn test;
-    
-  
-  }  
-}
-
-
-  
+                 }
+            
+          stage('UAT Test') {
+            steps {
+                    sh "UAT tests-${ENVIRONMENT}.sh"
+                    }
+                
+                }            
+          stage('SIT Tests') {
+            steps {
+                dir('postman') {
+                    nodejs('nodejs') {
+                        sh "sh ./newman-integration-tests-${ENVIRONMENT}.sh"
+                    }
+                    junit '**/newman/*.xml'
+                }
+            }
+        }
+    }

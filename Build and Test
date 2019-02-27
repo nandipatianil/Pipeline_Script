@@ -1,1 +1,24 @@
-
+pipeline{
+  agent any
+  environment{
+  branch='master'
+  source=''-------------server port='8080'
+  }
+  stages{
+          stage('checkout git'){
+             steps{
+                 git branch:----
+                                }
+                  }              
+        }
+          stage('build'){
+            steps{
+                  sh'mvn clean package -dsktests=true'
+                 }
+                        }
+          stage('test'){
+            steps{       
+    
+  
+  }  
+}

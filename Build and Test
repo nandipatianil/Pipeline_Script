@@ -25,12 +25,9 @@ pipeline{
                 }            
           stage('SIT Tests') {
             steps {
-                dir('postman') {
-                    nodejs('nodejs') {
-                        sh "sh ./newman-integration-tests-${ENVIRONMENT}.sh"
-                    }
-                    junit '**/newman/*.xml'
-                }
+                    sh "SIT tests-${ENVIRONMENT}.sh"
+                   }
+                   
             }
         }
     }

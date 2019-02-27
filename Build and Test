@@ -7,18 +7,23 @@ pipeline{
   stages{
           stage('checkout git'){
              steps{
-                 git branch:----
-                                }
+                 git url:'---------------'
+                 sh 'git clean';             }
                   }              
         }
           stage('build'){
             steps{
-                  sh'mvn clean package -dsktests=true'
+                  sh'mvn clean package'
                  }
                         }
           stage('test'){
-            steps{       
+            steps{  
+                  parallel 'test': {
+                  sh "${mvnHome}/bin/mvn test;
     
   
   }  
 }
+
+
+  

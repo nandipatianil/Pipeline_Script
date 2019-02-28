@@ -2,7 +2,6 @@ pipeline{
   agent any
   environment{
   branch='master'
-  source=''-------------server port='8080'
   }
   stages{
           stage('checkout git'){

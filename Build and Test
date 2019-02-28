@@ -6,25 +6,27 @@ pipeline{
   stages{
           stage('checkout git'){
             steps{
-                 git url:'---------------'
+                 git url:'---------------'                      // use git scm url
                  sh 'git clean'; 
                                 }
                   }             
           stage('build'){
             steps{
-                  sh'mvn clean package'
+                  WithMaven(maven : 'maven version'){         // use maven version
+                  sh'mvn clean package';
                         }
+                     }   
                  }
             
           stage('UAT Test') {
             steps {
-                    sh "UAT tests-${ENVIRONMENT}.sh"
+                    sh "UAT tests-${ENVIRONMENT}.sh"          //define Environment
                     }
                 
                 }            
           stage('SIT Tests') {
             steps {
-                    sh "SIT tests-${ENVIRONMENT}.sh"
+                    sh "SIT tests-${ENVIRONMENT}.sh"          //define Environment
                    }
                    
             }

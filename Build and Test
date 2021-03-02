@@ -12,7 +12,7 @@ pipeline{
                   }             
           stage('build'){
             steps{
-                  WithMaven(maven : 'maven version'){         // use maven version
+                  WithMaven(maven : 'maven version'){         // use Maven version
                   sh'mvn clean package';
                         }
                      }   

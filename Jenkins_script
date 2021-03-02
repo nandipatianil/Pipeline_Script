@@ -10,7 +10,7 @@ pipeline
 							bat "${mvnHome}/bin/mvn package"
 						}
 	
-						stage('Testing Stage')
+						stage('Test Stage')
 						{
 							def mvnHome=tool name:'E:\\softwares\\apache-maven-3.5.2', type":'maven'
 							bat "${mvnHome}/bin/mvn test"
